@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>流量矩陣與圖形視覺化</title>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <link rel="stylesheet" href="/static/style.css">
+    <script src="/static/script.js" defer></script>
+</head>
+<body>
+    <div class="container matrix-container">
+        <h1>輸入各 Switch 之間的流量矩陣 (17 x 17)</h1>
+
+        <table id="matrix-table">
+            <thead></thead>
+            <tbody></tbody>
+        </table>
+
+        <div class="user-input-container">
+            <label for="user-note">💬 使用者備註/問題</label>
+            <textarea id="user-note" placeholder="請輸入相關說明或額外資訊..."></textarea>
+        </div>
+
+        <div class="button-container">
+            <button onclick="fetchLatestTraffic()">取得最新流量資訊</button>
+            <button onclick="submitMatrix()">問題提交&取得節能策略</button>
+            <!-- 新增：開啟歷史紀錄彈窗 -->
+            <button class="btn-secondary" onclick="openHistoryModal()">查看過去紀錄</button>
+        </div>
+
+        <div id="result">
+            <h2>分析結果</h2>
+            <div id="evaluation-result">尚未提交</div>
+            <div id="loading">
+                <div class="spinner"></div>
+                <p>分析中...</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 右側: 圖形視覺化 -->
+    <div class="container graph-container">
+        <h1>網路拓樸圖 (紅色線表示由數字小到數字大的節點網路流量)</h1>
+        <svg width="1200" height="1200"></svg>
+        <div id="graph-loading" class="graph-overlay">
+            <div class="spinner"></div>
+            <p>取得流量資訊中…</p>
+        </div>
+    </div>
+
+    <!-- 新增：歷史紀錄 Modal -->
+    <div id="history-modal" class="modal" style="display:none;">
+      <div class="modal-content">
+        <button class="modal-close" onclick="closeHistoryModal()">×</button>
+        <h2 style="margin-top:0;">過去問題紀錄</h2>
+        <div class="modal-body">
+          <div id="history-list" class="history-list">載入中…</div>
+          <pre id="history-detail" class="history-detail">（點選左側一筆紀錄以檢視）</pre>
+        </div>
+        <div class="pagination">
+          <button id="prev-page" class="pager-btn">上一頁</button>
+          <span id="page-info"></span>
+          <button id="next-page" class="pager-btn">下一頁</button>
+          <select id="page-size" title="每頁筆數">
+            <option value="10">10 筆/頁</option>
+            <option value="20">20 筆/頁</option>
+            <option value="50">50 筆/頁</option>
+          </select>
+        </div>
+      </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,34 @@
+# AI Network Processor - Complete Dependencies
+# Core FastAPI and web framework
+fastapi>=0.104.0
+uvicorn>=0.24.0
+python-multipart>=0.0.6
+
+# Machine Learning and RL
+stable-baselines3>=2.0.0
+torch>=2.0.0
+networkx>=3.0
+numpy>=1.24.0
+scikit-learn>=1.3.0
+
+# NLP and RAG System
+transformers>=4.37.0
+sentence-transformers>=2.2.0
+tiktoken>=0.5.0
+unsloth>=2025.2.15
+
+# Document processing
+python-docx>=0.8.11
+
+# Environment and configuration
+python-dotenv>=1.0.0
+
+# HTTP requests and API testing
+requests>=2.31.0
+
+# Optional GPU acceleration (uncomment if CUDA available)
+# torch-cuda>=2.0.0
+
+# Development and testing
+pytest>=7.0.0
+pytest-asyncio>=0.21.0

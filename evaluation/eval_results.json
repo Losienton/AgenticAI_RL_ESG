@@ -1,0 +1,1529 @@
+{
+  "timestamp": "2026-03-11T02:22:23.585538",
+  "config": {
+    "num_nodes": 17,
+    "num_physical_links": 33,
+    "link_bandwidth_mbps": 7000,
+    "watts_per_port": 35,
+    "num_trials": 5,
+    "methods": {
+      "rl_heuristic": "RL+Heuristic",
+      "heuristic_default": "Heuristic (default)",
+      "heuristic_aggressive": "Heuristic (aggressive)",
+      "greedy": "Greedy"
+    }
+  },
+  "summary": {
+    "off_peak": {
+      "avg_util": 0.17793774976273488,
+      "rl_heuristic": {
+        "avg_closed": 0.0,
+        "avg_saving": 0.0,
+        "connected": true,
+        "avg_overloaded": 0.0
+      },
+      "heuristic_default": {
+        "avg_closed": 17.0,
+        "avg_saving": 0.5151515151515151,
+        "connected": true,
+        "avg_overloaded": 0.0
+      },
+      "heuristic_aggressive": {
+        "avg_closed": 17.0,
+        "avg_saving": 0.5151515151515151,
+        "connected": true,
+        "avg_overloaded": 0.0
+      },
+      "greedy": {
+        "avg_closed": 17.0,
+        "avg_saving": 0.5151515151515151,
+        "connected": true,
+        "avg_overloaded": 0.0
+      }
+    },
+    "high": {
+      "avg_util": 0.6791128496678288,
+      "rl_heuristic": {
+        "avg_closed": 0.0,
+        "avg_saving": 0.0,
+        "connected": true,
+        "avg_overloaded": 0.0
+      },
+      "heuristic_default": {
+        "avg_closed": 0.0,
+        "avg_saving": 0.0,
+        "connected": true,
+        "avg_overloaded": 0.0
+      },
+      "heuristic_aggressive": {
+        "avg_closed": 10.6,
+        "avg_saving": 0.32121212121212117,
+        "connected": true,
+        "avg_overloaded": 0.0
+      },
+      "greedy": {
+        "avg_closed": 17.0,
+        "avg_saving": 0.5151515151515151,
+        "connected": true,
+        "avg_overloaded": 0.0
+      }
+    },
+    "peak": {
+      "avg_util": 0.926762649857641,
+      "rl_heuristic": {
+        "avg_closed": 0.0,
+        "avg_saving": 0.0,
+        "connected": true,
+        "avg_overloaded": 23.4
+      },
+      "heuristic_default": {
+        "avg_closed": 0.0,
+        "avg_saving": 0.0,
+        "connected": true,
+        "avg_overloaded": 23.4
+      },
+      "heuristic_aggressive": {
+        "avg_closed": 0.0,
+        "avg_saving": 0.0,
+        "connected": true,
+        "avg_overloaded": 23.4
+      },
+      "greedy": {
+        "avg_closed": 17.0,
+        "avg_saving": 0.5151515151515151,
+        "connected": true,
+        "avg_overloaded": 18.2
+      }
+    },
+    "surge": {
+      "avg_util": 0.37698015750559327,
+      "rl_heuristic": {
+        "avg_closed": 0.2,
+        "avg_saving": 0.006060606060606061,
+        "connected": true,
+        "avg_overloaded": 0.0
+      },
+      "heuristic_default": {
+        "avg_closed": 11.0,
+        "avg_saving": 0.3333333333333333,
+        "connected": true,
+        "avg_overloaded": 0.0
+      },
+      "heuristic_aggressive": {
+        "avg_closed": 15.2,
+        "avg_saving": 0.4606060606060606,
+        "connected": true,
+        "avg_overloaded": 0.0
+      },
+      "greedy": {
+        "avg_closed": 17.0,
+        "avg_saving": 0.5151515151515151,
+        "connected": true,
+        "avg_overloaded": 0.0
+      }
+    }
+  },
+  "all_trials": [
+    {
+      "scenario": "off_peak",
+      "seed": 42,
+      "avg_util": 0.16636058299569756,
+      "rl_heuristic": {
+        "closed": 0,
+        "saving": 0.0,
+        "connected": true,
+        "overloaded": 0,
+        "closed_links": []
+      },
+      "heuristic_default": {
+        "closed": 17,
+        "saving": 0.5151515151515151,
+        "connected": true,
+        "overloaded": 0,
+        "closed_links": [
+          "S1-S3",
+          "S1-S4",
+          "S1-S9",
+          "S2-S4",
+          "S3-S9",
+          "S4-S5",
+          "S4-S6",
+          "S4-S8",
+          "S4-S10",
+          "S4-S11",
+          "S4-S15",
+          "S7-S9",
+          "S9-S10",
+          "S12-S15",
+          "S13-S15",
+          "S14-S15",
+          "S15-S17"
+        ]
+      },
+      "heuristic_aggressive": {
+        "closed": 17,
+        "saving": 0.5151515151515151,
+        "connected": true,
+        "overloaded": 0,
+        "closed_links": [
+          "S1-S3",
+          "S1-S4",
+          "S1-S9",
+          "S2-S4",
+          "S3-S9",
+          "S4-S5",
+          "S4-S6",
+          "S4-S8",
+          "S4-S10",
+          "S4-S11",
+          "S4-S15",
+          "S7-S9",
+          "S9-S10",
+          "S12-S15",
+          "S13-S15",
+          "S14-S15",
+          "S15-S17"
+        ]
+      },
+      "greedy": {
+        "closed": 17,
+        "saving": 0.5151515151515151,
+        "connected": true,
+        "overloaded": 0,
+        "closed_links": [
+          "S1-S3",
+          "S1-S4",
+          "S1-S9",
+          "S2-S4",
+          "S3-S9",
+          "S4-S5",
+          "S4-S6",
+          "S4-S8",
+          "S4-S10",
+          "S4-S11",
+          "S4-S15",
+          "S7-S9",
+          "S9-S10",
+          "S12-S15",
+          "S13-S15",
+          "S14-S15",
+          "S15-S17"
+        ]
+      }
+    },
+    {
+      "scenario": "off_peak",
+      "seed": 49,
+      "avg_util": 0.18811767905780927,
+      "rl_heuristic": {
+        "closed": 0,
+        "saving": 0.0,
+        "connected": true,
+        "overloaded": 0,
+        "closed_links": []
+      },
+      "heuristic_default": {
+        "closed": 17,
+        "saving": 0.5151515151515151,
+        "connected": true,
+        "overloaded": 0,
+        "closed_links": [
+          "S1-S2",
+          "S1-S4",
+          "S1-S9",
+          "S2-S9",
+          "S3-S4",
+          "S4-S6",
+          "S4-S7",
+          "S4-S9",
+          "S8-S9",
+          "S9-S10",
+          "S9-S15",
+          "S10-S14",
+          "S10-S16",
+          "S10-S17",
+          "S11-S15",
+          "S12-S15",
+          "S13-S15"
+        ]
+      },
+      "heuristic_aggressive": {
+        "closed": 17,
+        "saving": 0.5151515151515151,
+        "connected": true,
+        "overloaded": 0,
+        "closed_links": [
+          "S1-S2",
+          "S1-S4",
+          "S1-S9",
+          "S2-S9",
+          "S3-S4",
+          "S4-S6",
+          "S4-S7",
+          "S4-S9",
+          "S8-S9",
+          "S9-S10",
+          "S9-S15",
+          "S10-S14",
+          "S10-S16",
+          "S10-S17",
+          "S11-S15",
+          "S12-S15",
+          "S13-S15"
+        ]
+      },
+      "greedy": {
+        "closed": 17,
+        "saving": 0.5151515151515151,
+        "connected": true,
+        "overloaded": 0,
+        "closed_links": [
+          "S1-S2",
+          "S1-S4",
+          "S1-S9",
+          "S2-S9",
+          "S3-S4",
+          "S4-S6",
+          "S4-S7",
+          "S4-S9",
+          "S8-S9",
+          "S9-S10",
+          "S9-S15",
+          "S10-S14",
+          "S10-S16",
+          "S10-S17",
+          "S11-S15",
+          "S12-S15",
+          "S13-S15"
+        ]
+      }
+    },
+    {
+      "scenario": "off_peak",
+      "seed": 56,
+      "avg_util": 0.1740031022298605,
+      "rl_heuristic": {
+        "closed": 0,
+        "saving": 0.0,
+        "connected": true,
+        "overloaded": 0,
+        "closed_links": []
+      },
+      "heuristic_default": {
+        "closed": 17,
+        "saving": 0.5151515151515151,
+        "connected": true,
+        "overloaded": 0,
+        "closed_links": [
+          "S1-S3",
+          "S1-S4",
+          "S1-S9",
+          "S2-S9",
+          "S3-S9",
+          "S4-S6",
+          "S4-S8",
+          "S4-S9",
+          "S4-S10",
+          "S5-S9",
+          "S7-S9",
+          "S9-S10",
+          "S10-S14",
+          "S11-S15",
+          "S12-S15",
+          "S13-S15",
+          "S15-S16"
+        ]
+      },
+      "heuristic_aggressive": {
+        "closed": 17,
+        "saving": 0.5151515151515151,
+        "connected": true,
+        "overloaded": 0,
+        "closed_links": [
+          "S1-S3",
+          "S1-S4",
+          "S1-S9",
+          "S2-S9",
+          "S3-S9",
+          "S4-S6",
+          "S4-S8",
+          "S4-S9",
+          "S4-S10",
+          "S5-S9",
+          "S7-S9",
+          "S9-S10",
+          "S10-S14",
+          "S11-S15",
+          "S12-S15",
+          "S13-S15",
+          "S15-S16"
+        ]
+      },
+      "greedy": {
+        "closed": 17,
+        "saving": 0.5151515151515151,
+        "connected": true,
+        "overloaded": 0,
+        "closed_links": [
+          "S1-S3",
+          "S1-S4",
+          "S1-S9",
+          "S2-S9",
+          "S3-S9",
+          "S4-S6",
+          "S4-S8",
+          "S4-S9",
+          "S4-S10",
+          "S5-S9",
+          "S7-S9",
+          "S9-S10",
+          "S10-S14",
+          "S11-S15",
+          "S12-S15",
+          "S13-S15",
+          "S15-S16"
+        ]
+      }
+    },
+    {
+      "scenario": "off_peak",
+      "seed": 63,
+      "avg_util": 0.1868149230588325,
+      "rl_heuristic": {
+        "closed": 0,
+        "saving": 0.0,
+        "connected": true,
+        "overloaded": 0,
+        "closed_links": []
+      },
+      "heuristic_default": {
+        "closed": 17,
+        "saving": 0.5151515151515151,
+        "connected": true,
+        "overloaded": 0,
+        "closed_links": [
+          "S1-S3",
+          "S1-S4",
+          "S1-S9",
+          "S2-S9",
+          "S3-S4",
+          "S4-S10",
+          "S5-S9",
+          "S6-S15",
+          "S7-S9",
+          "S8-S9",
+          "S9-S10",
+          "S9-S15",
+          "S10-S12",
+          "S10-S13",
+          "S10-S17",
+          "S11-S15",
+          "S15-S16"
+        ]
+      },
+      "heuristic_aggressive": {
+        "closed": 17,
+        "saving": 0.5151515151515151,
+        "connected": true,
+        "overloaded": 0,
+        "closed_links": [
+          "S1-S3",
+          "S1-S4",
+          "S1-S9",
+          "S2-S9",
+          "S3-S4",
+          "S4-S10",
+          "S5-S9",
+          "S6-S15",
+          "S7-S9",
+          "S8-S9",
+          "S9-S10",
+          "S9-S15",
+          "S10-S12",
+          "S10-S13",
+          "S10-S17",
+          "S11-S15",
+          "S15-S16"
+        ]
+      },
+      "greedy": {
+        "closed": 17,
+        "saving": 0.5151515151515151,
+        "connected": true,
+        "overloaded": 0,
+        "closed_links": [
+          "S1-S3",
+          "S1-S4",
+          "S1-S9",
+          "S2-S9",
+          "S3-S4",
+          "S4-S10",
+          "S5-S9",
+          "S6-S15",
+          "S7-S9",
+          "S8-S9",
+          "S9-S10",
+          "S9-S15",
+          "S10-S12",
+          "S10-S13",
+          "S10-S17",
+          "S11-S15",
+          "S15-S16"
+        ]
+      }
+    },
+    {
+      "scenario": "off_peak",
+      "seed": 70,
+      "avg_util": 0.1743924614714746,
+      "rl_heuristic": {
+        "closed": 0,
+        "saving": 0.0,
+        "connected": true,
+        "overloaded": 0,
+        "closed_links": []
+      },
+      "heuristic_default": {
+        "closed": 17,
+        "saving": 0.5151515151515151,
+        "connected": true,
+        "overloaded": 0,
+        "closed_links": [
+          "S1-S4",
+          "S2-S4",
+          "S2-S9",
+          "S3-S4",
+          "S3-S9",
+          "S4-S5",
+          "S4-S6",
+          "S4-S9",
+          "S4-S15",
+          "S7-S9",
+          "S8-S9",
+          "S9-S15",
+          "S10-S16",
+          "S10-S17",
+          "S11-S15",
+          "S12-S15",
+          "S14-S15"
+        ]
+      },
+      "heuristic_aggressive": {
+        "closed": 17,
+        "saving": 0.5151515151515151,
+        "connected": true,
+        "overloaded": 0,
+        "closed_links": [
+          "S1-S4",
+          "S2-S4",
+          "S2-S9",
+          "S3-S4",
+          "S3-S9",
+          "S4-S5",
+          "S4-S6",
+          "S4-S9",
+          "S4-S15",
+          "S7-S9",
+          "S8-S9",
+          "S9-S15",
+          "S10-S16",
+          "S10-S17",
+          "S11-S15",
+          "S12-S15",
+          "S14-S15"
+        ]
+      },
+      "greedy": {
+        "closed": 17,
+        "saving": 0.5151515151515151,
+        "connected": true,
+        "overloaded": 0,
+        "closed_links": [
+          "S1-S4",
+          "S2-S4",
+          "S2-S9",
+          "S3-S4",
+          "S3-S9",
+          "S4-S5",
+          "S4-S6",
+          "S4-S9",
+          "S4-S15",
+          "S7-S9",
+          "S8-S9",
+          "S9-S15",
+          "S10-S16",
+          "S10-S17",
+          "S11-S15",
+          "S12-S15",
+          "S14-S15"
+        ]
+      }
+    },
+    {
+      "scenario": "high",
+      "seed": 42,
+      "avg_util": 0.6629048161939766,
+      "rl_heuristic": {
+        "closed": 0,
+        "saving": 0.0,
+        "connected": true,
+        "overloaded": 0,
+        "closed_links": []
+      },
+      "heuristic_default": {
+        "closed": 0,
+        "saving": 0.0,
+        "connected": true,
+        "overloaded": 0,
+        "closed_links": []
+      },
+      "heuristic_aggressive": {
+        "closed": 12,
+        "saving": 0.36363636363636365,
+        "connected": true,
+        "overloaded": 0,
+        "closed_links": [
+          "S1-S4",
+          "S3-S9",
+          "S4-S5",
+          "S4-S6",
+          "S4-S8",
+          "S4-S10",
+          "S7-S9",
+          "S9-S10",
+          "S12-S15",
+          "S13-S15",
+          "S14-S15",
+          "S15-S17"
+        ]
+      },
+      "greedy": {
+        "closed": 17,
+        "saving": 0.5151515151515151,
+        "connected": true,
+        "overloaded": 0,
+        "closed_links": [
+          "S1-S3",
+          "S1-S4",
+          "S1-S9",
+          "S2-S4",
+          "S3-S9",
+          "S4-S5",
+          "S4-S6",
+          "S4-S8",
+          "S4-S10",
+          "S4-S11",
+          "S4-S15",
+          "S7-S9",
+          "S9-S10",
+          "S12-S15",
+          "S13-S15",
+          "S14-S15",
+          "S15-S17"
+        ]
+      }
+    },
+    {
+      "scenario": "high",
+      "seed": 49,
+      "avg_util": 0.693364750680933,
+      "rl_heuristic": {
+        "closed": 0,
+        "saving": 0.0,
+        "connected": true,
+        "overloaded": 0,
+        "closed_links": []
+      },
+      "heuristic_default": {
+        "closed": 0,
+        "saving": 0.0,
+        "connected": true,
+        "overloaded": 0,
+        "closed_links": []
+      },
+      "heuristic_aggressive": {
+        "closed": 8,
+        "saving": 0.24242424242424243,
+        "connected": true,
+        "overloaded": 0,
+        "closed_links": [
+          "S1-S2",
+          "S1-S9",
+          "S4-S6",
+          "S4-S9",
+          "S9-S15",
+          "S10-S14",
+          "S10-S17",
+          "S11-S15"
+        ]
+      },
+      "greedy": {
+        "closed": 17,
+        "saving": 0.5151515151515151,
+        "connected": true,
+        "overloaded": 0,
+        "closed_links": [
+          "S1-S2",
+          "S1-S4",
+          "S1-S9",
+          "S2-S9",
+          "S3-S4",
+          "S4-S6",
+          "S4-S7",
+          "S4-S9",
+          "S8-S9",
+          "S9-S10",
+          "S9-S15",
+          "S10-S14",
+          "S10-S16",
+          "S10-S17",
+          "S11-S15",
+          "S12-S15",
+          "S13-S15"
+        ]
+      }
+    },
+    {
+      "scenario": "high",
+      "seed": 56,
+      "avg_util": 0.6736043431218047,
+      "rl_heuristic": {
+        "closed": 0,
+        "saving": 0.0,
+        "connected": true,
+        "overloaded": 0,
+        "closed_links": []
+      },
+      "heuristic_default": {
+        "closed": 0,
+        "saving": 0.0,
+        "connected": true,
+        "overloaded": 0,
+        "closed_links": []
+      },
+      "heuristic_aggressive": {
+        "closed": 11,
+        "saving": 0.3333333333333333,
+        "connected": true,
+        "overloaded": 0,
+        "closed_links": [
+          "S1-S9",
+          "S2-S9",
+          "S4-S8",
+          "S4-S9",
+          "S5-S9",
+          "S7-S9",
+          "S10-S14",
+          "S11-S15",
+          "S12-S15",
+          "S13-S15",
+          "S15-S16"
+        ]
+      },
+      "greedy": {
+        "closed": 17,
+        "saving": 0.5151515151515151,
+        "connected": true,
+        "overloaded": 0,
+        "closed_links": [
+          "S1-S3",
+          "S1-S4",
+          "S1-S9",
+          "S2-S9",
+          "S3-S9",
+          "S4-S6",
+          "S4-S8",
+          "S4-S9",
+          "S4-S10",
+          "S5-S9",
+          "S7-S9",
+          "S9-S10",
+          "S10-S14",
+          "S11-S15",
+          "S12-S15",
+          "S13-S15",
+          "S15-S16"
+        ]
+      }
+    },
+    {
+      "scenario": "high",
+      "seed": 63,
+      "avg_util": 0.6915408922823655,
+      "rl_heuristic": {
+        "closed": 0,
+        "saving": 0.0,
+        "connected": true,
+        "overloaded": 0,
+        "closed_links": []
+      },
+      "heuristic_default": {
+        "closed": 0,
+        "saving": 0.0,
+        "connected": true,
+        "overloaded": 0,
+        "closed_links": []
+      },
+      "heuristic_aggressive": {
+        "closed": 9,
+        "saving": 0.2727272727272727,
+        "connected": true,
+        "overloaded": 0,
+        "closed_links": [
+          "S1-S3",
+          "S1-S4",
+          "S1-S9",
+          "S2-S9",
+          "S5-S9",
+          "S6-S15",
+          "S7-S9",
+          "S9-S15",
+          "S11-S15"
+        ]
+      },
+      "greedy": {
+        "closed": 17,
+        "saving": 0.5151515151515151,
+        "connected": true,
+        "overloaded": 0,
+        "closed_links": [
+          "S1-S3",
+          "S1-S4",
+          "S1-S9",
+          "S2-S9",
+          "S3-S4",
+          "S4-S10",
+          "S5-S9",
+          "S6-S15",
+          "S7-S9",
+          "S8-S9",
+          "S9-S10",
+          "S9-S15",
+          "S10-S12",
+          "S10-S13",
+          "S10-S17",
+          "S11-S15",
+          "S15-S16"
+        ]
+      }
+    },
+    {
+      "scenario": "high",
+      "seed": 70,
+      "avg_util": 0.6741494460600645,
+      "rl_heuristic": {
+        "closed": 0,
+        "saving": 0.0,
+        "connected": true,
+        "overloaded": 0,
+        "closed_links": []
+      },
+      "heuristic_default": {
+        "closed": 0,
+        "saving": 0.0,
+        "connected": true,
+        "overloaded": 0,
+        "closed_links": []
+      },
+      "heuristic_aggressive": {
+        "closed": 13,
+        "saving": 0.3939393939393939,
+        "connected": true,
+        "overloaded": 0,
+        "closed_links": [
+          "S1-S4",
+          "S2-S4",
+          "S2-S9",
+          "S4-S5",
+          "S4-S9",
+          "S4-S15",
+          "S7-S9",
+          "S8-S9",
+          "S9-S15",
+          "S10-S16",
+          "S10-S17",
+          "S11-S15",
+          "S12-S15"
+        ]
+      },
+      "greedy": {
+        "closed": 17,
+        "saving": 0.5151515151515151,
+        "connected": true,
+        "overloaded": 0,
+        "closed_links": [
+          "S1-S4",
+          "S2-S4",
+          "S2-S9",
+          "S3-S4",
+          "S3-S9",
+          "S4-S5",
+          "S4-S6",
+          "S4-S9",
+          "S4-S15",
+          "S7-S9",
+          "S8-S9",
+          "S9-S15",
+          "S10-S16",
+          "S10-S17",
+          "S11-S15",
+          "S12-S15",
+          "S14-S15"
+        ]
+      }
+    },
+    {
+      "scenario": "peak",
+      "seed": 42,
+      "avg_util": 0.9198163497974186,
+      "rl_heuristic": {
+        "closed": 0,
+        "saving": 0.0,
+        "connected": true,
+        "overloaded": 18,
+        "closed_links": []
+      },
+      "heuristic_default": {
+        "closed": 0,
+        "saving": 0.0,
+        "connected": true,
+        "overloaded": 18,
+        "closed_links": []
+      },
+      "heuristic_aggressive": {
+        "closed": 0,
+        "saving": 0.0,
+        "connected": true,
+        "overloaded": 18,
+        "closed_links": []
+      },
+      "greedy": {
+        "closed": 17,
+        "saving": 0.5151515151515151,
+        "connected": true,
+        "overloaded": 15,
+        "closed_links": [
+          "S1-S3",
+          "S1-S4",
+          "S1-S9",
+          "S2-S4",
+          "S3-S9",
+          "S4-S5",
+          "S4-S6",
+          "S4-S8",
+          "S4-S10",
+          "S4-S11",
+          "S4-S15",
+          "S7-S9",
+          "S9-S10",
+          "S12-S15",
+          "S13-S15",
+          "S14-S15",
+          "S15-S17"
+        ]
+      }
+    },
+    {
+      "scenario": "peak",
+      "seed": 49,
+      "avg_util": 0.9328706074346855,
+      "rl_heuristic": {
+        "closed": 0,
+        "saving": 0.0,
+        "connected": true,
+        "overloaded": 26,
+        "closed_links": []
+      },
+      "heuristic_default": {
+        "closed": 0,
+        "saving": 0.0,
+        "connected": true,
+        "overloaded": 26,
+        "closed_links": []
+      },
+      "heuristic_aggressive": {
+        "closed": 0,
+        "saving": 0.0,
+        "connected": true,
+        "overloaded": 26,
+        "closed_links": []
+      },
+      "greedy": {
+        "closed": 17,
+        "saving": 0.5151515151515151,
+        "connected": true,
+        "overloaded": 18,
+        "closed_links": [
+          "S1-S2",
+          "S1-S4",
+          "S1-S9",
+          "S2-S9",
+          "S3-S4",
+          "S4-S6",
+          "S4-S7",
+          "S4-S9",
+          "S8-S9",
+          "S9-S10",
+          "S9-S15",
+          "S10-S14",
+          "S10-S16",
+          "S10-S17",
+          "S11-S15",
+          "S12-S15",
+          "S13-S15"
+        ]
+      }
+    },
+    {
+      "scenario": "peak",
+      "seed": 56,
+      "avg_util": 0.9244018613379164,
+      "rl_heuristic": {
+        "closed": 0,
+        "saving": 0.0,
+        "connected": true,
+        "overloaded": 25,
+        "closed_links": []
+      },
+      "heuristic_default": {
+        "closed": 0,
+        "saving": 0.0,
+        "connected": true,
+        "overloaded": 25,
+        "closed_links": []
+      },
+      "heuristic_aggressive": {
+        "closed": 0,
+        "saving": 0.0,
+        "connected": true,
+        "overloaded": 25,
+        "closed_links": []
+      },
+      "greedy": {
+        "closed": 17,
+        "saving": 0.5151515151515151,
+        "connected": true,
+        "overloaded": 20,
+        "closed_links": [
+          "S1-S3",
+          "S1-S4",
+          "S1-S9",
+          "S2-S9",
+          "S3-S9",
+          "S4-S6",
+          "S4-S8",
+          "S4-S9",
+          "S4-S10",
+          "S5-S9",
+          "S7-S9",
+          "S9-S10",
+          "S10-S14",
+          "S11-S15",
+          "S12-S15",
+          "S13-S15",
+          "S15-S16"
+        ]
+      }
+    },
+    {
+      "scenario": "peak",
+      "seed": 63,
+      "avg_util": 0.9320889538352995,
+      "rl_heuristic": {
+        "closed": 0,
+        "saving": 0.0,
+        "connected": true,
+        "overloaded": 26,
+        "closed_links": []
+      },
+      "heuristic_default": {
+        "closed": 0,
+        "saving": 0.0,
+        "connected": true,
+        "overloaded": 26,
+        "closed_links": []
+      },
+      "heuristic_aggressive": {
+        "closed": 0,
+        "saving": 0.0,
+        "connected": true,
+        "overloaded": 26,
+        "closed_links": []
+      },
+      "greedy": {
+        "closed": 17,
+        "saving": 0.5151515151515151,
+        "connected": true,
+        "overloaded": 18,
+        "closed_links": [
+          "S1-S3",
+          "S1-S4",
+          "S1-S9",
+          "S2-S9",
+          "S3-S4",
+          "S4-S10",
+          "S5-S9",
+          "S6-S15",
+          "S7-S9",
+          "S8-S9",
+          "S9-S10",
+          "S9-S15",
+          "S10-S12",
+          "S10-S13",
+          "S10-S17",
+          "S11-S15",
+          "S15-S16"
+        ]
+      }
+    },
+    {
+      "scenario": "peak",
+      "seed": 70,
+      "avg_util": 0.9246354768828848,
+      "rl_heuristic": {
+        "closed": 0,
+        "saving": 0.0,
+        "connected": true,
+        "overloaded": 22,
+        "closed_links": []
+      },
+      "heuristic_default": {
+        "closed": 0,
+        "saving": 0.0,
+        "connected": true,
+        "overloaded": 22,
+        "closed_links": []
+      },
+      "heuristic_aggressive": {
+        "closed": 0,
+        "saving": 0.0,
+        "connected": true,
+        "overloaded": 22,
+        "closed_links": []
+      },
+      "greedy": {
+        "closed": 17,
+        "saving": 0.5151515151515151,
+        "connected": true,
+        "overloaded": 20,
+        "closed_links": [
+          "S1-S4",
+          "S2-S4",
+          "S2-S9",
+          "S3-S4",
+          "S3-S9",
+          "S4-S5",
+          "S4-S6",
+          "S4-S9",
+          "S4-S15",
+          "S7-S9",
+          "S8-S9",
+          "S9-S15",
+          "S10-S16",
+          "S10-S17",
+          "S11-S15",
+          "S12-S15",
+          "S14-S15"
+        ]
+      }
+    },
+    {
+      "scenario": "surge",
+      "seed": 42,
+      "avg_util": 0.3733806280800859,
+      "rl_heuristic": {
+        "closed": 0,
+        "saving": 0.0,
+        "connected": true,
+        "overloaded": 0,
+        "closed_links": []
+      },
+      "heuristic_default": {
+        "closed": 11,
+        "saving": 0.3333333333333333,
+        "connected": true,
+        "overloaded": 0,
+        "closed_links": [
+          "S2-S9",
+          "S3-S9",
+          "S4-S7",
+          "S4-S8",
+          "S4-S10",
+          "S9-S15",
+          "S10-S16",
+          "S10-S17",
+          "S12-S15",
+          "S13-S15",
+          "S14-S15"
+        ]
+      },
+      "heuristic_aggressive": {
+        "closed": 15,
+        "saving": 0.45454545454545453,
+        "connected": true,
+        "overloaded": 0,
+        "closed_links": [
+          "S1-S2",
+          "S2-S9",
+          "S3-S9",
+          "S4-S5",
+          "S4-S6",
+          "S4-S7",
+          "S4-S8",
+          "S4-S10",
+          "S4-S15",
+          "S9-S15",
+          "S10-S16",
+          "S10-S17",
+          "S12-S15",
+          "S13-S15",
+          "S14-S15"
+        ]
+      },
+      "greedy": {
+        "closed": 17,
+        "saving": 0.5151515151515151,
+        "connected": true,
+        "overloaded": 0,
+        "closed_links": [
+          "S1-S2",
+          "S1-S4",
+          "S1-S9",
+          "S2-S9",
+          "S3-S9",
+          "S4-S5",
+          "S4-S6",
+          "S4-S7",
+          "S4-S8",
+          "S4-S10",
+          "S4-S15",
+          "S9-S15",
+          "S10-S16",
+          "S10-S17",
+          "S12-S15",
+          "S13-S15",
+          "S14-S15"
+        ]
+      }
+    },
+    {
+      "scenario": "surge",
+      "seed": 49,
+      "avg_util": 0.3770455787661183,
+      "rl_heuristic": {
+        "closed": 0,
+        "saving": 0.0,
+        "connected": true,
+        "overloaded": 0,
+        "closed_links": []
+      },
+      "heuristic_default": {
+        "closed": 12,
+        "saving": 0.36363636363636365,
+        "connected": true,
+        "overloaded": 0,
+        "closed_links": [
+          "S1-S4",
+          "S2-S4",
+          "S3-S4",
+          "S4-S15",
+          "S5-S9",
+          "S7-S9",
+          "S9-S15",
+          "S10-S16",
+          "S10-S17",
+          "S11-S15",
+          "S12-S15",
+          "S14-S15"
+        ]
+      },
+      "heuristic_aggressive": {
+        "closed": 15,
+        "saving": 0.45454545454545453,
+        "connected": true,
+        "overloaded": 0,
+        "closed_links": [
+          "S1-S2",
+          "S1-S4",
+          "S2-S4",
+          "S3-S4",
+          "S4-S10",
+          "S4-S15",
+          "S5-S9",
+          "S6-S15",
+          "S7-S9",
+          "S9-S15",
+          "S10-S16",
+          "S10-S17",
+          "S11-S15",
+          "S12-S15",
+          "S14-S15"
+        ]
+      },
+      "greedy": {
+        "closed": 17,
+        "saving": 0.5151515151515151,
+        "connected": true,
+        "overloaded": 0,
+        "closed_links": [
+          "S1-S2",
+          "S1-S4",
+          "S1-S9",
+          "S2-S4",
+          "S3-S4",
+          "S4-S10",
+          "S4-S15",
+          "S5-S9",
+          "S6-S15",
+          "S7-S9",
+          "S8-S9",
+          "S9-S15",
+          "S10-S16",
+          "S10-S17",
+          "S11-S15",
+          "S12-S15",
+          "S14-S15"
+        ]
+      }
+    },
+    {
+      "scenario": "surge",
+      "seed": 56,
+      "avg_util": 0.37337230464259447,
+      "rl_heuristic": {
+        "closed": 1,
+        "saving": 0.030303030303030304,
+        "connected": true,
+        "overloaded": 0,
+        "closed_links": [
+          "S4-S15"
+        ]
+      },
+      "heuristic_default": {
+        "closed": 11,
+        "saving": 0.3333333333333333,
+        "connected": true,
+        "overloaded": 0,
+        "closed_links": [
+          "S2-S9",
+          "S3-S4",
+          "S3-S9",
+          "S4-S8",
+          "S4-S9",
+          "S7-S9",
+          "S9-S10",
+          "S9-S15",
+          "S10-S13",
+          "S15-S16",
+          "S15-S17"
+        ]
+      },
+      "heuristic_aggressive": {
+        "closed": 15,
+        "saving": 0.45454545454545453,
+        "connected": true,
+        "overloaded": 0,
+        "closed_links": [
+          "S2-S9",
+          "S3-S4",
+          "S3-S9",
+          "S4-S5",
+          "S4-S8",
+          "S4-S9",
+          "S4-S11",
+          "S6-S15",
+          "S7-S9",
+          "S9-S10",
+          "S9-S15",
+          "S10-S13",
+          "S12-S15",
+          "S15-S16",
+          "S15-S17"
+        ]
+      },
+      "greedy": {
+        "closed": 17,
+        "saving": 0.5151515151515151,
+        "connected": true,
+        "overloaded": 0,
+        "closed_links": [
+          "S1-S4",
+          "S2-S9",
+          "S3-S4",
+          "S3-S9",
+          "S4-S5",
+          "S4-S8",
+          "S4-S9",
+          "S4-S11",
+          "S4-S15",
+          "S6-S15",
+          "S7-S9",
+          "S9-S10",
+          "S9-S15",
+          "S10-S13",
+          "S12-S15",
+          "S15-S16",
+          "S15-S17"
+        ]
+      }
+    },
+    {
+      "scenario": "surge",
+      "seed": 63,
+      "avg_util": 0.3828483582705345,
+      "rl_heuristic": {
+        "closed": 0,
+        "saving": 0.0,
+        "connected": true,
+        "overloaded": 0,
+        "closed_links": []
+      },
+      "heuristic_default": {
+        "closed": 11,
+        "saving": 0.3333333333333333,
+        "connected": true,
+        "overloaded": 0,
+        "closed_links": [
+          "S1-S2",
+          "S1-S3",
+          "S1-S9",
+          "S2-S9",
+          "S3-S9",
+          "S4-S6",
+          "S4-S7",
+          "S4-S9",
+          "S4-S10",
+          "S9-S10",
+          "S10-S16"
+        ]
+      },
+      "heuristic_aggressive": {
+        "closed": 16,
+        "saving": 0.48484848484848486,
+        "connected": true,
+        "overloaded": 0,
+        "closed_links": [
+          "S1-S2",
+          "S1-S3",
+          "S1-S9",
+          "S2-S9",
+          "S3-S9",
+          "S4-S5",
+          "S4-S6",
+          "S4-S7",
+          "S4-S9",
+          "S4-S10",
+          "S4-S15",
+          "S9-S10",
+          "S10-S16",
+          "S11-S15",
+          "S13-S15",
+          "S15-S17"
+        ]
+      },
+      "greedy": {
+        "closed": 17,
+        "saving": 0.5151515151515151,
+        "connected": true,
+        "overloaded": 0,
+        "closed_links": [
+          "S1-S2",
+          "S1-S3",
+          "S1-S9",
+          "S2-S9",
+          "S3-S9",
+          "S4-S5",
+          "S4-S6",
+          "S4-S7",
+          "S4-S9",
+          "S4-S10",
+          "S4-S15",
+          "S9-S10",
+          "S10-S12",
+          "S10-S16",
+          "S11-S15",
+          "S13-S15",
+          "S15-S17"
+        ]
+      }
+    },
+    {
+      "scenario": "surge",
+      "seed": 70,
+      "avg_util": 0.3782539177686334,
+      "rl_heuristic": {
+        "closed": 0,
+        "saving": 0.0,
+        "connected": true,
+        "overloaded": 0,
+        "closed_links": []
+      },
+      "heuristic_default": {
+        "closed": 10,
+        "saving": 0.30303030303030304,
+        "connected": true,
+        "overloaded": 0,
+        "closed_links": [
+          "S1-S2",
+          "S2-S9",
+          "S3-S9",
+          "S4-S7",
+          "S5-S9",
+          "S6-S15",
+          "S9-S15",
+          "S10-S13",
+          "S10-S17",
+          "S14-S15"
+        ]
+      },
+      "heuristic_aggressive": {
+        "closed": 15,
+        "saving": 0.45454545454545453,
+        "connected": true,
+        "overloaded": 0,
+        "closed_links": [
+          "S1-S2",
+          "S1-S4",
+          "S2-S9",
+          "S3-S9",
+          "S4-S7",
+          "S5-S9",
+          "S6-S15",
+          "S8-S9",
+          "S9-S10",
+          "S9-S15",
+          "S10-S12",
+          "S10-S13",
+          "S10-S16",
+          "S10-S17",
+          "S14-S15"
+        ]
+      },
+      "greedy": {
+        "closed": 17,
+        "saving": 0.5151515151515151,
+        "connected": true,
+        "overloaded": 0,
+        "closed_links": [
+          "S1-S2",
+          "S1-S4",
+          "S1-S9",
+          "S2-S9",
+          "S3-S9",
+          "S4-S7",
+          "S4-S11",
+          "S5-S9",
+          "S6-S15",
+          "S8-S9",
+          "S9-S10",
+          "S9-S15",
+          "S10-S12",
+          "S10-S13",
+          "S10-S16",
+          "S10-S17",
+          "S14-S15"
+        ]
+      }
+    }
+  ]
+}

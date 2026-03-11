@@ -1,0 +1,46 @@
+{
+  "description": "RL Model Output",
+  "note": "RL model (PPO) outputs 3 thresholds, NOT a matrix. These thresholds are fed into the Heuristic algorithm which decides which links to close.",
+  "rl_model_path": "esgbackend/telemetry/models/python_model_20250810_161530",
+  "rl_raw_output": {
+    "description": "3 continuous action values (thresholds) from PPO model",
+    "bufLow": 1.0,
+    "utilHi": 1.0,
+    "utilCap": 1.0,
+    "explanation": {
+      "bufLow": "Buffer low threshold (0.00-0.50): if buffer_utilization < bufLow, link is candidate for closure",
+      "utilHi": "Utilization high threshold (0.30-0.80): if link_utilization < utilHi, link is candidate for closure",
+      "utilCap": "Utilization capacity threshold (0.60-1.00): if utilization > utilCap, link must stay open"
+    }
+  },
+  "heuristic_algorithm_steps": [
+    "1. Calculate buffer/utilization stats for all 50 bidirectional links (input: 50x7 state matrix)",
+    "2. Apply adaptive thresholds (scale down for low traffic scenarios)",
+    "3. Determine candidate links: close if buffer < bufLow AND utilization < utilHi",
+    "4. Check current overload and reopen (LIFO) if needed",
+    "5. Apply hysteresis (prevent rapid state switching, min 30s)",
+    "6. Safety check (ensure each node has >= 2 connections, prevent network partition)",
+    "7. Store traffic before closure for redistribution calculation",
+    "8. Check redistribution overload and reopen (LIFO) if needed",
+    "9. Return final list of links to close"
+  ],
+  "heuristic_final_output": {
+    "links_to_close": [
+      "S4-S9",
+      "S9-S4"
+    ],
+    "original_prediction_before_topology_filter": [
+      "S4-S9",
+      "S9-S4"
+    ],
+    "topology_filtered_prediction": [
+      "S4-S9",
+      "S9-S4"
+    ],
+    "protected_links": []
+  },
+  "energy_saving": {
+    "percentage": "9.5%",
+    "calculation": "1 bidirectional pair closed / 21 total pairs * 2 = 9.5%"
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "interface-configuration": [
+    {
+      "active": "act",
+      "interface-name": "GigabitEthernet0/0/0/1",
+      "shutdown": null
+    }
+  ]
+}

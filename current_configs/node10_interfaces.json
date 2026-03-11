@@ -1,0 +1,201 @@
+{
+  "interface-configurations": {
+    "interface-configuration": [
+      {
+        "active": "act",
+        "interface-name": "GigabitEthernet0/0/0/5",
+        "shutdown": [
+          null
+        ]
+      },
+      {
+        "active": "act",
+        "interface-name": "GigabitEthernet0/0/0/6",
+        "shutdown": [
+          null
+        ]
+      },
+      {
+        "active": "act",
+        "interface-name": "GigabitEthernet0/0/0/3",
+        "Cisco-IOS-XR-ipv4-io-cfg:ipv4-network": {
+          "addresses": {
+            "primary": {
+              "address": "10.0.4.34",
+              "netmask": "255.255.255.252"
+            }
+          }
+        }
+      },
+      {
+        "active": "act",
+        "interface-name": "GigabitEthernet0/0/0/4",
+        "shutdown": [
+          null
+        ]
+      },
+      {
+        "active": "act",
+        "interface-name": "GigabitEthernet0/0/0/1",
+        "shutdown": [
+          null
+        ]
+      },
+      {
+        "active": "act",
+        "interface-name": "GigabitEthernet0/0/0/16",
+        "Cisco-IOS-XR-ipv4-io-cfg:ipv4-network": {
+          "addresses": {
+            "primary": {
+              "address": "10.0.10.17",
+              "netmask": "255.255.255.252"
+            }
+          }
+        }
+      },
+      {
+        "active": "act",
+        "interface-name": "GigabitEthernet0/0/0/2",
+        "shutdown": [
+          null
+        ]
+      },
+      {
+        "active": "act",
+        "interface-name": "GigabitEthernet0/0/0/17",
+        "shutdown": [
+          null
+        ]
+      },
+      {
+        "active": "act",
+        "interface-name": "GigabitEthernet0/0/0/18",
+        "shutdown": [
+          null
+        ]
+      },
+      {
+        "active": "act",
+        "interface-name": "GigabitEthernet0/0/0/0",
+        "shutdown": [
+          null
+        ]
+      },
+      {
+        "active": "act",
+        "interface-name": "GigabitEthernet0/0/0/12",
+        "Cisco-IOS-XR-ipv4-io-cfg:ipv4-network": {
+          "addresses": {
+            "primary": {
+              "address": "10.0.10.5",
+              "netmask": "255.255.255.252"
+            }
+          }
+        }
+      },
+      {
+        "active": "act",
+        "interface-name": "GigabitEthernet0/0/0/13",
+        "Cisco-IOS-XR-ipv4-io-cfg:ipv4-network": {
+          "addresses": {
+            "primary": {
+              "address": "10.0.10.9",
+              "netmask": "255.255.255.252"
+            }
+          }
+        }
+      },
+      {
+        "active": "act",
+        "interface-name": "MgmtEth0/0/CPU0/0",
+        "shutdown": [
+          null
+        ]
+      },
+      {
+        "active": "act",
+        "interface-name": "GigabitEthernet0/0/0/14",
+        "shutdown": [
+          null
+        ]
+      },
+      {
+        "active": "act",
+        "interface-name": "GigabitEthernet0/0/0/15",
+        "Cisco-IOS-XR-ipv4-io-cfg:ipv4-network": {
+          "addresses": {
+            "primary": {
+              "address": "10.0.10.13",
+              "netmask": "255.255.255.252"
+            }
+          }
+        }
+      },
+      {
+        "active": "act",
+        "interface-name": "Loopback0",
+        "interface-virtual": [
+          null
+        ],
+        "Cisco-IOS-XR-ipv4-io-cfg:ipv4-network": {
+          "addresses": {
+            "primary": {
+              "address": "49.1.1.10",
+              "netmask": "255.255.255.255"
+            }
+          }
+        }
+      },
+      {
+        "active": "act",
+        "interface-name": "GigabitEthernet0/0/0/10",
+        "shutdown": [
+          null
+        ]
+      },
+      {
+        "active": "act",
+        "interface-name": "GigabitEthernet0/0/0/11",
+        "Cisco-IOS-XR-ipv4-io-cfg:ipv4-network": {
+          "addresses": {
+            "primary": {
+              "address": "10.0.10.1",
+              "netmask": "255.255.255.252"
+            }
+          }
+        }
+      },
+      {
+        "active": "act",
+        "interface-name": "GigabitEthernet0/0/0/9",
+        "Cisco-IOS-XR-ipv4-io-cfg:ipv4-network": {
+          "addresses": {
+            "primary": {
+              "address": "192.168.3.2",
+              "netmask": "255.255.255.0"
+            }
+          }
+        }
+      },
+      {
+        "active": "act",
+        "interface-name": "GigabitEthernet0/0/0/7",
+        "shutdown": [
+          null
+        ]
+      },
+      {
+        "active": "act",
+        "interface-name": "GigabitEthernet0/0/0/8",
+        "Cisco-IOS-XR-ipv4-io-cfg:ipv4-network": {
+          "addresses": {
+            "primary": {
+              "address": "10.0.9.30",
+              "netmask": "255.255.255.252"
+            }
+          }
+        }
+      }
+    ]
+  }
+}

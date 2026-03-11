@@ -1,0 +1,88 @@
+{
+  "interface-configurations": {
+    "interface-configuration": [
+      {
+        "active": "act",
+        "interface-name": "GigabitEthernet0/0/0/3",
+        "Cisco-IOS-XR-ipv4-io-cfg:ipv4-network": {
+          "addresses": {
+            "primary": {
+              "address": "10.0.9.2",
+              "netmask": "255.255.255.252"
+            }
+          }
+        }
+      },
+      {
+        "active": "act",
+        "interface-name": "GigabitEthernet0/0/0/4",
+        "Cisco-IOS-XR-ipv4-io-cfg:ipv4-network": {
+          "addresses": {
+            "primary": {
+              "address": "192.168.6.2",
+              "netmask": "255.255.255.252"
+            }
+          }
+        }
+      },
+      {
+        "active": "act",
+        "interface-name": "GigabitEthernet0/0/0/1",
+        "Cisco-IOS-XR-ipv4-io-cfg:ipv4-network": {
+          "addresses": {
+            "primary": {
+              "address": "10.0.1.6",
+              "netmask": "255.255.255.252"
+            }
+          }
+        }
+      },
+      {
+        "active": "act",
+        "interface-name": "GigabitEthernet0/0/0/2",
+        "Cisco-IOS-XR-ipv4-io-cfg:ipv4-network": {
+          "addresses": {
+            "primary": {
+              "address": "10.0.4.2",
+              "netmask": "255.255.255.252"
+            }
+          }
+        }
+      },
+      {
+        "active": "act",
+        "interface-name": "GigabitEthernet0/0/0/0",
+        "Cisco-IOS-XR-ipv4-io-cfg:ipv4-network": {
+          "addresses": {
+            "primary": {
+              "address": "10.0.1.2",
+              "netmask": "255.255.255.252"
+            }
+          }
+        }
+      },
+      {
+        "active": "act",
+        "interface-name": "MgmtEth0/0/CPU0/0",
+        "shutdown": [
+          null
+        ]
+      },
+      {
+        "active": "act",
+        "interface-name": "Loopback0",
+        "interface-virtual": [
+          null
+        ],
+        "Cisco-IOS-XR-ipv4-io-cfg:ipv4-network": {
+          "addresses": {
+            "primary": {
+              "address": "49.1.1.1",
+              "netmask": "255.255.255.255"
+            }
+          }
+        }
+      }
+    ]
+  }
+}
