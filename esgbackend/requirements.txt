@@ -3,6 +3,7 @@
 fastapi>=0.104.0
 uvicorn>=0.24.0
 python-multipart>=0.0.6
+flask>=3.0.0
 
 # Machine Learning and RL
 stable-baselines3>=2.0.0
@@ -19,16 +20,11 @@ unsloth>=2025.2.15
 
 # Document processing
 python-docx>=0.8.11
+lxml>=5.0.0
 
 # Environment and configuration
 python-dotenv>=1.0.0
 
-# HTTP requests and API testing
+# HTTP requests
 requests>=2.31.0
-
-# Optional GPU acceleration (uncomment if CUDA available)
-# torch-cuda>=2.0.0
-
-# Development and testing
-pytest>=7.0.0
-pytest-asyncio>=0.21.0
+httpx>=0.28.0
