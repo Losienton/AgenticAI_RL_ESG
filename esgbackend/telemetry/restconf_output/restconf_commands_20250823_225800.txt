@@ -1,4 +1,0 @@
-# RESTCONF Commands to Shutdown Interfaces
-# Generated at: 2025-08-23 22:58:00
-# Total commands: 0
-

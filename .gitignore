@@ -22,6 +22,25 @@ unsloth_compiled_cache/
 # PDF files
 pdffile/
 
+# Output & logs
+restconf_output/
+pipeline_output/
+*.log
+*.pkl
+*.db
+
+# Backup files
+*.bak.*
+
+# IDE
+.vscode/
+
+# Agent artifacts
+AGENT_CHANGELOG*.md
+
+# Old configs (superseded by original_configs/)
+current_configs/
+
 # OS files
 .DS_Store
 Thumbs.db
