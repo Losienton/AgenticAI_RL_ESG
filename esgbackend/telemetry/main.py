@@ -11,7 +11,7 @@ from dotenv import load_dotenv
 from collect import collect_link_traffic, fetch_generic_counters_legacy
 from rl_model import get_rl_manager
 from rag_system import get_rag_system
-from restconf_processor import process_predicted_links, build_shutdown_commands
+from restconf_processor import process_predicted_links, build_shutdown_commands, execute_shutdown, execute_no_shutdown
 load_dotenv()
 
 # ────────────────────── 配置設定 ──────────────────────────
@@ -917,4 +917,135 @@ async def close_link(link: str):
         raise
     except Exception as e:
         print(f"❌ Error in close-link endpoint: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+# ────────────────────── Act 自動化端點 ──────────────────────────
+
+class ActRequest(BaseModel):
+    links: Optional[list] = None      # 指定要關閉的 link，為 None 時自動由 Heuristic 決定
+    dry_run: Optional[bool] = True    # 預設 dry_run，避免誤操作
+    protected_links: Optional[list] = None  # 要保護的 link
+
+class RestoreRequest(BaseModel):
+    links: list                       # 要恢復的 link 列表
+
+@app.post("/act")
+async def act_execute(request: ActRequest):
+    """
+    Act 階段自動化：系統自動透過 RESTCONF 將 shutdown 指令部署到 ODL/路由器。
+
+    流程：
+    1. Perceive: 採集即時流量 (telemetry)
+    2. Reason: Heuristic 決定哪些 link 要關閉（或使用指定的 links）
+    3. Act: 透過 RESTCONF PUT 自動執行 interface shutdown
+
+    dry_run=True (預設) 時只模擬，不會真的執行。
+    """
+    from datetime import datetime
+
+    try:
+        # ─── Step 1: Perceive ───
+        print("=" * 60)
+        print("🤖 Act 自動化 pipeline 啟動")
+        print("=" * 60)
+
+        telemetry_data = collector()
+        print(f"📡 Perceive: 採集到 {len(telemetry_data)} 條 link 流量資料")
+
+        # ─── Step 2: Reason ───
+        if request.links:
+            # 使用者指定要關閉的 link
+            links_to_close = request.links
+            reason_method = "user_specified"
+            print(f"🧠 Reason: 使用者指定 {len(links_to_close)} 條 link 待關閉")
+        else:
+            # 自動用 RL + Heuristic 決策
+            links_to_close = predict_links_to_close_rl(telemetry_data)
+            reason_method = "rl_heuristic"
+            print(f"🧠 Reason: RL+Heuristic 建議關閉 {len(links_to_close)} 條 link")
+
+        # 拓樸過濾
+        links_to_close = filter_links_by_topology(links_to_close)
+
+        # 排除保護的 link
+        if request.protected_links:
+            protected = []
+            for pl in request.protected_links:
+                protected.append(pl)
+                parts = pl.split('-')
+                if len(parts) == 2:
+                    protected.append(f"{parts[1]}-{parts[0]}")
+            links_to_close = [l for l in links_to_close if l not in protected]
+            print(f"🔒 排除保護 link 後剩餘 {len(links_to_close)} 條")
+
+        if not links_to_close:
+            return {
+                "status": "no_action",
+                "message": "沒有需要關閉的 link",
+                "telemetry_summary": {
+                    "total_links": len(telemetry_data),
+                },
+                "timestamp": datetime.now().isoformat()
+            }
+
+        # ─── Step 3: Act ───
+        print(f"⚡ Act: {'DRY RUN 模擬' if request.dry_run else '正式執行'} shutdown {len(links_to_close)} 條 link")
+        act_results = execute_shutdown(links_to_close, dry_run=request.dry_run)
+
+        success_count = sum(1 for r in act_results if r["status"] in ("success", "dry_run"))
+        error_count = sum(1 for r in act_results if r["status"] == "error")
+
+        print(f"📊 結果: {success_count} 成功, {error_count} 失敗")
+        print("=" * 60)
+
+        return {
+            "status": "completed",
+            "dry_run": request.dry_run,
+            "reason_method": reason_method,
+            "links_to_close": links_to_close,
+            "act_results": act_results,
+            "summary": {
+                "total": len(act_results),
+                "success": success_count,
+                "error": error_count,
+            },
+            "telemetry_summary": {
+                "total_links": len(telemetry_data),
+            },
+            "timestamp": datetime.now().isoformat()
+        }
+
+    except Exception as e:
+        print(f"❌ Act pipeline error: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+@app.post("/act/restore")
+async def act_restore(request: RestoreRequest):
+    """
+    恢復已關閉的 link（移除 shutdown）。
+    用於 rollback 或流量升高時重新啟用 link。
+    """
+    from datetime import datetime
+
+    try:
+        print(f"🔄 恢復 {len(request.links)} 條 link...")
+        results = execute_no_shutdown(request.links)
+
+        success_count = sum(1 for r in results if r["status"] == "success")
+
+        return {
+            "status": "completed",
+            "restore_results": results,
+            "summary": {
+                "total": len(results),
+                "success": success_count,
+                "error": len(results) - success_count,
+            },
+            "timestamp": datetime.now().isoformat()
+        }
+
+    except Exception as e:
+        print(f"❌ Restore error: {e}")
         raise HTTPException(status_code=500, detail=str(e))

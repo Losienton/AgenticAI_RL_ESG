@@ -507,11 +507,165 @@ def process_predicted_links(links_to_close: List[str], **kwargs) -> Tuple[List[s
     
     return file_commands, api_commands, configs, commands_file, config_files
 
+def execute_shutdown(links: List[str], *, host="192.168.10.22", port=8181, dry_run=False) -> List[Dict]:
+    """
+    Automatically execute interface shutdown via ODL RESTCONF API.
+    This is the Act stage automation: GET current config → add shutdown → PUT back.
+
+    Args:
+        links: List of link names to shut down (e.g., ['S1-S2', 'S4-S5'])
+        host: ODL RESTCONF host
+        port: ODL RESTCONF port
+        dry_run: If True, only simulate without actually sending PUT requests
+
+    Returns:
+        List of result dicts with status for each link
+    """
+    results = []
+
+    for link in links:
+        result = {"link": link, "status": "skipped", "detail": ""}
+
+        if link not in INTERFACE_MAPPING:
+            result["status"] = "error"
+            result["detail"] = f"Link {link} not found in INTERFACE_MAPPING"
+            results.append(result)
+            continue
+
+        interface = INTERFACE_MAPPING[link]
+        src_node = link.split('-')[0]
+        node_id = NODE_MAPPING.get(src_node)
+
+        if not node_id:
+            result["status"] = "error"
+            result["detail"] = f"Node {src_node} not found in NODE_MAPPING"
+            results.append(result)
+            continue
+
+        config_url = _iface_to_config_url(interface, host=host, port=port, node=node_id)
+
+        try:
+            # Step 1: GET current config
+            print(f"📥 [{link}] GET config for {node_id}/{interface}...")
+            resp = requests.get(config_url, verify=False, auth=AUTH, headers=HEADERS, timeout=30)
+            resp.raise_for_status()
+            current_config = resp.json()
+
+            # Step 2: Add shutdown field
+            modified_config = add_shutdown_to_config(current_config)
+
+            if dry_run:
+                result["status"] = "dry_run"
+                result["detail"] = f"Would shutdown {node_id}/{interface}"
+                result["config"] = modified_config
+                print(f"🔸 [{link}] DRY RUN: would shutdown {interface}")
+            else:
+                # Step 3: PUT modified config
+                print(f"📤 [{link}] PUT shutdown config for {node_id}/{interface}...")
+                put_headers = {"Content-Type": "application/json", "Accept": "application/json"}
+                resp = requests.put(config_url, verify=False, auth=AUTH, headers=put_headers,
+                                    json=modified_config, timeout=30)
+
+                if resp.status_code in (200, 201, 204):
+                    result["status"] = "success"
+                    result["detail"] = f"Successfully shutdown {node_id}/{interface}"
+                    print(f"✅ [{link}] Shutdown {interface} on {node_id}")
+                else:
+                    result["status"] = "error"
+                    result["detail"] = f"PUT returned {resp.status_code}: {resp.text[:200]}"
+                    print(f"❌ [{link}] Failed: {resp.status_code}")
+
+        except Exception as e:
+            result["status"] = "error"
+            result["detail"] = str(e)
+            print(f"❌ [{link}] Exception: {e}")
+
+        results.append(result)
+
+    return results
+
+
+def execute_no_shutdown(links: List[str], *, host="192.168.10.22", port=8181) -> List[Dict]:
+    """
+    Remove shutdown from interfaces (restore links).
+    GET current config → remove shutdown field → PUT back.
+
+    Args:
+        links: List of link names to restore (e.g., ['S1-S2', 'S4-S5'])
+        host: ODL RESTCONF host
+        port: ODL RESTCONF port
+
+    Returns:
+        List of result dicts with status for each link
+    """
+    import copy
+    results = []
+
+    for link in links:
+        result = {"link": link, "status": "skipped", "detail": ""}
+
+        if link not in INTERFACE_MAPPING:
+            result["status"] = "error"
+            result["detail"] = f"Link {link} not found in INTERFACE_MAPPING"
+            results.append(result)
+            continue
+
+        interface = INTERFACE_MAPPING[link]
+        src_node = link.split('-')[0]
+        node_id = NODE_MAPPING.get(src_node)
+
+        if not node_id:
+            result["status"] = "error"
+            result["detail"] = f"Node {src_node} not found in NODE_MAPPING"
+            results.append(result)
+            continue
+
+        config_url = _iface_to_config_url(interface, host=host, port=port, node=node_id)
+
+        try:
+            # Step 1: GET current config
+            print(f"📥 [{link}] GET config for {node_id}/{interface}...")
+            resp = requests.get(config_url, verify=False, auth=AUTH, headers=HEADERS, timeout=30)
+            resp.raise_for_status()
+            current_config = resp.json()
+
+            # Step 2: Remove shutdown field
+            modified_config = copy.deepcopy(current_config)
+            if 'interface-configuration' in modified_config:
+                iface_configs = modified_config['interface-configuration']
+                if isinstance(iface_configs, list) and len(iface_configs) > 0:
+                    iface_configs[0].pop('shutdown', None)
+
+            # Step 3: PUT modified config
+            print(f"📤 [{link}] PUT no-shutdown config for {node_id}/{interface}...")
+            put_headers = {"Content-Type": "application/json", "Accept": "application/json"}
+            resp = requests.put(config_url, verify=False, auth=AUTH, headers=put_headers,
+                                json=modified_config, timeout=30)
+
+            if resp.status_code in (200, 201, 204):
+                result["status"] = "success"
+                result["detail"] = f"Successfully restored {node_id}/{interface}"
+                print(f"✅ [{link}] Restored {interface} on {node_id}")
+            else:
+                result["status"] = "error"
+                result["detail"] = f"PUT returned {resp.status_code}: {resp.text[:200]}"
+                print(f"❌ [{link}] Failed: {resp.status_code}")
+
+        except Exception as e:
+            result["status"] = "error"
+            result["detail"] = str(e)
+            print(f"❌ [{link}] Exception: {e}")
+
+        results.append(result)
+
+    return results
+
+
 def main():
     """Test function with sample predicted links"""
     # Sample predicted links for testing
     sample_links = ["S1-S2", "S4-S5", "S9-S7", "S10-S12"]
-    
+
     print("🧪 Testing RESTCONF processor with sample links...")
     process_predicted_links(sample_links)
 
