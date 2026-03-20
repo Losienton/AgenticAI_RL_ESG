@@ -237,6 +237,29 @@ def api_history_one(item_id):
         print("[ERROR - api_history_one]", traceback.format_exc())
         return jsonify({"status": "error", "message": str(e)}), 500
 
+BACKEND_URL = "http://localhost:8000"
+
+@app.route('/api/act', methods=['POST'])
+def api_act():
+    """Proxy to backend /act endpoint (HOTL Stage 2: execute)"""
+    try:
+        payload = request.get_json() or {}
+        resp = requests.post(f"{BACKEND_URL}/act", json=payload, timeout=120)
+        return jsonify(resp.json()), resp.status_code
+    except Exception as e:
+        print("[ERROR - api_act]", traceback.format_exc())
+        return jsonify({"status": "error", "message": str(e)}), 500
+
+@app.route('/api/act/restore', methods=['POST'])
+def api_act_restore():
+    """Proxy to backend /act/restore endpoint"""
+    try:
+        payload = request.get_json() or {}
+        resp = requests.post(f"{BACKEND_URL}/act/restore", json=payload, timeout=120)
+        return jsonify(resp.json()), resp.status_code
+    except Exception as e:
+        print("[ERROR - api_act_restore]", traceback.format_exc())
+        return jsonify({"status": "error", "message": str(e)}), 500
+
 if __name__ == '__main__':
-    # 預設 static 目錄為 ./static（index.html、style.css、script.js 請放這裡）
     app.run(debug=True, host="127.0.0.1", port=5000)

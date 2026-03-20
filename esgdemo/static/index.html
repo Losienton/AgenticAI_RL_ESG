@@ -1,71 +1,95 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-TW">
 <head>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>流量矩陣與圖形視覺化</title>
+    <title>PRAL Agentic AI - SDN Energy-Savvy Routing</title>
     <script src="https://d3js.org/d3.v7.min.js"></script>
     <link rel="stylesheet" href="/static/style.css">
     <script src="/static/script.js" defer></script>
 </head>
 <body>
+    <!-- Left panel: controls & results -->
     <div class="container matrix-container">
-        <h1>輸入各 Switch 之間的流量矩陣 (17 x 17)</h1>
+        <h1>PRAL Agentic AI Dashboard</h1>
+        <p class="subtitle">Perceive - Reason - Act - Learn | SDN Energy-Savvy Routing</p>
 
-        <table id="matrix-table">
-            <thead></thead>
-            <tbody></tbody>
-        </table>
+        <div class="section">
+            <h2>1. Perceive: Traffic Matrix (17 nodes)</h2>
+            <div class="table-wrapper">
+                <table id="matrix-table">
+                    <thead></thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </div>
 
         <div class="user-input-container">
-            <label for="user-note">💬 使用者備註/問題</label>
-            <textarea id="user-note" placeholder="請輸入相關說明或額外資訊..."></textarea>
+            <label for="user-note">User Note / Protected Links</label>
+            <textarea id="user-note" placeholder="e.g. [S1-S4] to protect specific links..."></textarea>
         </div>
 
         <div class="button-container">
-            <button onclick="fetchLatestTraffic()">取得最新流量資訊</button>
-            <button onclick="submitMatrix()">問題提交&取得節能策略</button>
-            <!-- 新增：開啟歷史紀錄彈窗 -->
-            <button class="btn-secondary" onclick="openHistoryModal()">查看過去紀錄</button>
+            <button class="btn-primary" onclick="fetchLatestTraffic()">Perceive: Fetch Traffic</button>
+            <button class="btn-primary" onclick="submitMatrix()">Reason: Get Strategy</button>
+            <button class="btn-secondary" onclick="openHistoryModal()">History</button>
         </div>
 
+        <!-- Reason result -->
         <div id="result">
-            <h2>分析結果</h2>
-            <div id="evaluation-result">尚未提交</div>
+            <h2>2. Reason: Analysis Result</h2>
+            <div id="evaluation-result">Not submitted yet</div>
             <div id="loading">
                 <div class="spinner"></div>
-                <p>分析中...</p>
+                <p>Analyzing...</p>
             </div>
         </div>
+
+        <!-- HOTL Act panel (hidden until strategy is ready) -->
+        <div id="act-panel" style="display:none;">
+            <h2>3. Act: Execute Strategy (HOTL)</h2>
+            <div id="act-links-preview" class="act-preview"></div>
+            <div class="act-buttons">
+                <button class="btn-execute" onclick="executeAct(false)">Confirm & Execute Shutdown</button>
+                <button class="btn-dryrun" onclick="executeAct(true)">Dry Run (simulate only)</button>
+                <button class="btn-restore" onclick="restoreLinks()">Restore All</button>
+            </div>
+            <div id="act-result" class="act-result"></div>
+        </div>
     </div>
 
-    <!-- 右側: 圖形視覺化 -->
+    <!-- Right panel: topology graph -->
     <div class="container graph-container">
-        <h1>網路拓樸圖 (紅色線表示由數字小到數字大的節點網路流量)</h1>
-        <svg width="1200" height="1200"></svg>
+        <h2>Network Topology</h2>
+        <div class="legend">
+            <span class="legend-item"><span class="legend-dot" style="background:#e74c3c"></span> High traffic</span>
+            <span class="legend-item"><span class="legend-dot" style="background:#2ecc71"></span> Low traffic</span>
+            <span class="legend-item"><span class="legend-dot" style="background:#95a5a6"></span> Shutdown</span>
+        </div>
+        <svg id="topo-svg" viewBox="0 0 900 750"></svg>
         <div id="graph-loading" class="graph-overlay">
             <div class="spinner"></div>
-            <p>取得流量資訊中…</p>
+            <p>Fetching traffic...</p>
         </div>
     </div>
 
-    <!-- 新增：歷史紀錄 Modal -->
+    <!-- History Modal -->
     <div id="history-modal" class="modal" style="display:none;">
       <div class="modal-content">
-        <button class="modal-close" onclick="closeHistoryModal()">×</button>
-        <h2 style="margin-top:0;">過去問題紀錄</h2>
+        <button class="modal-close" onclick="closeHistoryModal()">&times;</button>
+        <h2 style="margin-top:0;">History</h2>
         <div class="modal-body">
-          <div id="history-list" class="history-list">載入中…</div>
-          <pre id="history-detail" class="history-detail">（點選左側一筆紀錄以檢視）</pre>
+          <div id="history-list" class="history-list">Loading...</div>
+          <pre id="history-detail" class="history-detail">(click a record to view)</pre>
         </div>
         <div class="pagination">
-          <button id="prev-page" class="pager-btn">上一頁</button>
+          <button id="prev-page" class="pager-btn">Prev</button>
           <span id="page-info"></span>
-          <button id="next-page" class="pager-btn">下一頁</button>
-          <select id="page-size" title="每頁筆數">
-            <option value="10">10 筆/頁</option>
-            <option value="20">20 筆/頁</option>
-            <option value="50">50 筆/頁</option>
+          <button id="next-page" class="pager-btn">Next</button>
+          <select id="page-size" title="items per page">
+            <option value="10">10/page</option>
+            <option value="20">20/page</option>
+            <option value="50">50/page</option>
           </select>
         </div>
       </div>
