@@ -281,25 +281,29 @@ function submitMatrix() {
       // Extract links to close from the result text (parse "S\d+-S\d+" patterns from commands)
       const linkPattern = /S\d+-S\d+/g;
       const foundLinks = evalResult.match(linkPattern) || [];
-      // Deduplicate and pair bidirectional
-      const linkPairs = new Set();
+      // Deduplicate: get unique physical links (take first one only for safe demo)
+      const seenPhysical = new Set();
+      const uniqueDirectional = [];
       foundLinks.forEach(l => {
-        linkPairs.add(l);
         const [s, t] = l.split('-');
-        linkPairs.add(`${t}-${s}`);
+        const physKey = `${Math.min(+s.slice(1), +t.slice(1))}-${Math.max(+s.slice(1), +t.slice(1))}`;
+        if (!seenPhysical.has(physKey)) {
+          seenPhysical.add(physKey);
+          uniqueDirectional.push(l);
+          uniqueDirectional.push(`${t}-${s}`);
+        }
       });
-      pendingLinks = Array.from(linkPairs);
+      // Only take the first physical link (bidirectional pair = 2 entries)
+      pendingLinks = uniqueDirectional.slice(0, 2);
 
       // Show Act panel (HOTL Stage 2)
       if (pendingLinks.length > 0) {
         const preview = document.getElementById('act-links-preview');
-        const uniquePhysical = new Set();
-        pendingLinks.forEach(l => {
-          const [s, t] = l.split('-');
-          uniquePhysical.add(`${Math.min(+s.slice(1), +t.slice(1))}-${Math.max(+s.slice(1), +t.slice(1))}`);
-        });
-        preview.innerHTML = `<b>Suggested ${uniquePhysical.size} physical links to shutdown:</b><br>` +
-          pendingLinks.filter((_, i) => i % 2 === 0).map(l => `  ${l} (bidirectional)`).join('<br>');
+        const allPhysical = Array.from(seenPhysical);
+        preview.innerHTML =
+          `<b>LLM suggested ${allPhysical.length} physical links to shutdown.</b><br>` +
+          `<b>Will execute first one only: ${pendingLinks[0]} (bidirectional)</b><br>` +
+          `<span style="color:#64748b">All suggestions: ${allPhysical.map(k => 'S' + k.replace('-', '-S')).join(', ')}</span>`;
         actPanel.style.display = 'block';
         document.getElementById('act-result').textContent = '';
       }
